@@ -1,0 +1,12 @@
+Source:		steem
+Section:	misc
+Priority:	optional
+Maintainer:	Ruslan Salikhov <ruslan.salihov@gmail.com>
+Build-Depends:	autoconf, automake, cmake, g++, git, libssl-dev, libtool, make, pkg-config, libboost-all-dev, libncurses5-dev, libreadline-dev, perl
+Homepage:	https://github.com/steemit/steem
+Package:	steem
+Version:	##STEEM_VERSION##-##UNIXTIME##
+Architecture:	amd64
+Depends:	libssl1.0.0, libreadline6
+Description:	A client for the Steem network
+ A client for the Steem network

@@ -1,0 +1,18 @@
+[Unit]
+Description=Steem Node Service
+
+[Service]
+Restart=always
+WorkingDirectory=/opt/steem
+ExecStart=/opt/steem/steemd
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=steemd
+StartLimitInterval=1
+Type=simple
+User=steem
+TimeoutSec=7200
+TimeoutStopSec=7200
+
+[Install]
+WantedBy=multi-user.target
