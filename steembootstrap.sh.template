@@ -144,7 +144,6 @@ make -j$BUILD_THREADS || error_exit "Cannot compile project"
 # Preparing steemnode package
 print_info " - Copying Files For Packaging"
 install -m 0755 programs/steemd/steemd $STEEM_PATH/
-install -m 0644 programs/steemd/snapshot5392323.json $STEEM_PATH
 install -m 0755 programs/cli_wallet/cli_wallet $STEEM_PATH
 cd ..
 
@@ -156,7 +155,7 @@ cp $BASEDIR/contrib/steemd.service $DEB_PATH/lib/systemd/system/
 cp -r $BASEDIR/contrib/debian $DEB_PATH/DEBIAN
 
 # Fixing package version
-STEEM_VERSION=$(cat $BASEDIR/steem/libraries/chain/include/steemit/chain/global_property_object.hpp | grep -m 1 STEEMIT_BLOCKCHAIN_VERSION | grep -oP '(\d+(, )?){3}' | sed 's/, /./g')
+STEEM_VERSION=$(cat $BASEDIR/steem/libraries/protocol/include/steemit/protocol/config.hpp | grep -m 1 STEEMIT_BLOCKCHAIN_VERSION | grep -oP '(\d+(, )?){3}' | sed 's/, /./g')
 UNIXTIME=$(date +%s)
 sed -i "s/##STEEM_VERSION##/$STEEM_VERSION/" $DEB_PATH/DEBIAN/control
 sed -i "s/##UNIXTIME##/$UNIXTIME/" $DEB_PATH/DEBIAN/control
